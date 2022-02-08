@@ -1,28 +1,27 @@
-// 引入Count组件的UI组件
-import CountUI from "../../components/Count"
-// 连接ui组件
-import { connect} from "react-redux"
-// 引入action对象
-import { createIncrement,createDecrement,createAsyncIncrement } from "../../redux/count_action"
-// 映射状态
-function mapStateToProps(state){
-    return {count:state}
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createIncrement,createDecrement } from "../../redux/count_action"
+class Count extends Component {
+  add=()=>{
+      this.props.jia(1)
+  }
+  decrease=()=>{
+      this.props.jian(1)
+  }
+  render() {
+    return <div>
+        <h2>当前求和为：{this.props.count}</h2>
+        <button onClick={this.add}>点我+1</button>
+        <button onClick={this.decrease}>点我-1</button>
+    </div>;
+  }
 }
-// const mapStateToProps = state => ({count:state})
-// 映射操作状态方法
-// function mapDispatchToProps(dispatch){
-//     return {
-//         jia:number=>
-//             // 通知redux执行加法
-//             dispatch(createIncrement(number)),
-//         jian: number=>dispatch(createDecrement(number)),
-//         jianAsync:(number,time)=>dispatch(createAsyncIncrement(number,time))
-        
-//     }
-// }
-export default connect(mapStateToProps ,{
+
+
+export default connect(
+    state=>({count:state}),//映射状态
+    {
     jia:createIncrement,
-    jian: createDecrement,
-    jianAsync:createAsyncIncrement
-    
-})(CountUI)
+    jian: createDecrement
+    }//映射操作状态
+)(Count)
