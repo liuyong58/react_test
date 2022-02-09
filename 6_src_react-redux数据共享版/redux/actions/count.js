@@ -7,7 +7,7 @@
 // function createDecrement(data){
 //     return {type:'decrement',data}
 // }
-import { DECREMENT,INCREMENT } from "./constant"
+import { DECREMENT,INCREMENT } from "../constant"
 
 // 同步action，就是指action的返回值为object的一般类型
 export const createIncrement = data=>({type:INCREMENT,data:data})
